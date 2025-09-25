@@ -1,0 +1,29 @@
+body
+{
+    width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Helvetica", "Lucida Grande", sans-serif;
+    color: #3D3D3D;
+}
+
+h1
+{
+    color: aqua;
+    width: 800px;
+}
+
+h2
+{
+    color: aquamarine;
+    width: 750px;
+}
+
+figure
+{
+    margin: 30px;
+    padding: 15px;
+    text-align: center;
+    background-color: whitesmoke;
+    border: 1px solid lightgray;
+}
