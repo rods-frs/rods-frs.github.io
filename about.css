@@ -1,0 +1,33 @@
+body
+{
+    width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Courier New', Courier, monospace;
+    color:black;
+}
+
+h1 {
+    padding: 10px;
+    background-color: antiquewhite;
+    color: blue;
+}
+
+h2 {
+    padding: 8px;
+    background-color: lightblue;
+    color: darkblue;
+}
+
+figure {
+    text-align: center;
+    background-color: antiquewhite;
+    border: 1px solid black;
+    padding: 15px;
+    margin: 30px;
+}
+
+imgs {
+    width: 600px;
+    height: auto;
+}
