@@ -19,6 +19,17 @@ h2
     width: 750px;
 }
 
+h3
+{
+    color: blueviolet;
+}
+
+h4
+{
+    color: blue;
+    width: 700px;
+}
+
 figure
 {
     margin: 30px;
