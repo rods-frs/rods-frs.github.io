@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Rodrigo's Arch guide - Installation</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <h1>Installation</h1>
+        <p>The installation of ArchLinux can be really dificult and even frustrating depending of your knowledge in the IT area, but don't worry, Here is a comfy video followed by the step-by-step guide of how to install it in your system with the time in minutes of where every step goes in the video.</p>
+        <iframe width="1037" height="583" src="https://www.youtube.com/embed/68z11VAYMS8" title="Arch Linux: A ℂ𝕠𝕞𝕗𝕪 Install Guide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <ul>
+        <li><strong>0:00</strong> – Introduction</li>
+        <li><strong>1:00</strong> – Boot into Arch ISO (UEFI mode)</li>
+        <li><strong>2:30</strong> – Connect to WiFi using <code>iwctl</code></li>
+        <li><strong>4:00</strong> – Set system clock: <code>timedatectl set-ntp true</code></li>
+        <li><strong>4:30</strong> – Partition disks with <code>fdisk</code> or <code>cfdisk</code></li>
+        <li><strong>8:00</strong> – Format partitions:
+            <pre>
+        mkfs.fat -F32 /dev/sdX1
+        mkswap /dev/sdX2
+        mkfs.ext4 /dev/sdX3
+            </pre>
+        </li>
+        <li><strong>9:13</strong> – Install microcode:
+            <pre>
+        pacman -S intel-ucode   # Intel
+        pacman -S amd-ucode     # AMD
+            </pre>
+        </li>
+        <li><strong>10:00</strong> – Mount partitions:
+            <pre>
+        mount /dev/sdX3 /mnt
+        mkdir /mnt/boot
+        mount /dev/sdX1 /mnt/boot
+        swapon /dev/sdX2
+            </pre>
+        </li>
+        <li><strong>11:30</strong> – Install base system:
+            <pre>pacstrap /mnt base linux linux-firmware</pre>
+        </li>
+        <li><strong>13:00</strong> – Generate fstab:
+            <pre>genfstab -U /mnt >> /mnt/etc/fstab</pre>
+        </li>
+        <li><strong>14:00</strong> – Chroot:
+            <pre>arch-chroot /mnt</pre>
+        </li>
+        <li><strong>15:00</strong> – Set timezone:
+            <pre>
+        ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
+        hwclock --systohc
+            </pre>
+        </li>
+        <li><strong>16:30</strong> – Localization:
+            <pre>
+        # Edit /etc/locale.gen
+        locale-gen
+        echo "LANG=en_US.UTF-8" > /etc/locale.conf
+            </pre>
+        </li>
+        <li><strong>18:00</strong> – Network config:
+            <pre>
+        echo "myhostname" > /etc/hostname
+        # Edit /etc/hosts
+            </pre>
+        </li>
+        <li><strong>20:00</strong> – Set root password:
+            <pre>passwd</pre>
+        </li>
+        <li><strong>21:00</strong> – Install GRUB:
+            <pre>
+        pacman -S grub efibootmgr
+        grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+        grub-mkconfig -o /boot/grub/grub.cfg
+            </pre>
+        </li>
+        <li><strong>22:00</strong> – Reboot:
+            <pre>
+        exit
+        umount -R /mnt
+        reboot
+            </pre>
+        </li>
+        </ul>
+
+        <p><strong>Enjoy your comfy Arch experience 🌿</strong></p>
+    </body>
+</html>
